@@ -17,3 +17,8 @@ pip-log.txt
 *.lprof
 
 MANIFEST
+seqlearn.egg-info/top_level.txt
+seqlearn.egg-info/SOURCES.txt
+dist/seqlearn-0.2-cp35-none-win_amd64.whl
+seqlearn.egg-info/dependency_links.txt
+seqlearn.egg-info/PKG-INFO

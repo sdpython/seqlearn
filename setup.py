@@ -1,6 +1,5 @@
 from Cython.Build import cythonize
-from distutils.core import setup
-from distutils.extension import Extension
+from setuptools import setup, Extension
 import os.path
 import re
 import sys
@@ -17,6 +16,15 @@ def readme():
             return f.read()
     except IOError:
         return "seqlearn: sequence classification library for Python"
+
+files = ["seqlearn/_decode/bestfirst.pyx",
+         "seqlearn/_decode/viterbi.pyx",
+         "seqlearn/_utils/ctrans.pyx",
+         "seqlearn/_utils/safeadd.pyx"]
+        
+extensions = [Extension(os.path.split(os.path.splitext(f)[0])[-1], 
+                [f]) for f in files]
+
 
 
 setup_options = dict(
@@ -43,10 +51,7 @@ setup_options = dict(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
     ],
-    ext_modules=cythonize(["seqlearn/_decode/bestfirst.pyx",
-                           "seqlearn/_decode/viterbi.pyx",
-                           "seqlearn/_utils/ctrans.pyx",
-                           "seqlearn/_utils/safeadd.pyx"]),
+    ext_modules=cythonize(extensions),
     requires=["sklearn"],
 )
 
